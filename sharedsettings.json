@@ -1,0 +1,45 @@
+{
+  //"DBConnectionText": "server=AMVGPRODDBSRV; user=funtasy_prod_user; password='G@1k8QG11ATlazhL'; database=FUNTASY;",
+  "DBConnectionText": "server=37.131.255.156; user=aeradmin; password='rXkT84YV'; database=FUNTASY;",
+  "DBConnectionTextForHangfire": "server=37.131.255.156; user=aeradmin; password=rXkT84YV; database=WITCHER",
+  "ProjectName": "FUNTASY",
+  "JwtToken": "yHb7562htkOewF6Aa7b2DYXOLZ4y1eicZBOmgVTDw3acOmXkqKzmY632LXLHpr9",
+  "Smtp": {
+    "Port": 587,
+    "Ssl": true,
+    "Client": "smtp.office365.com",
+    "Username": "funtasy_agent@amvg.com",
+    //"Password": "Jaz29667"
+    "Password": "Bof38103"
+  },
+  "Authentication": {
+    "ClientId": "aa2d400a-f2d8-4211-b15b-3fe040dd69d2",
+    "ClientSecret": "mGB8Q~Z8KUTYkr6KA_QViVDpiTc4DNG-idS17cFQ"
+  },
+  "ResetPasswordUrl": "https://localhost:44356/Login/ResetPassword/",
+  "UserConfirmationUrl": "https://localhost:44356/Register/Confirmation/",
+  "TotalGamePoint": 12.5,
+  "DeathMatchGamePoint": 15,
+  "ScoreDiffPoint": 10,
+  "ResultPoint": 20,
+  "GoalCountPoint": 10,
+  "EligibleDomains": [
+    "groupm.com",
+    "amvg.com",
+    "mediacom.com"
+  ],
+  "FootballApi": {
+    "Url": "https://api-football-v1.p.rapidapi.com/v3/",
+    "ApiKey": "880144e388msh2dfdf00d4e88108p130dacjsn95753ab333d2"
+  },
+  "GoogleReCaptcha": {
+    "Url": "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}",
+    "SiteKey": "6Lf00YAfAAAAAAqSmmX_gHvAgfYPmb5KXBukPQ_d",
+    "SecretKey": "6Lf00YAfAAAAAMok6JO_ABzcKJmHisF7xOpSe4uJ"
+  },
+  "StandardColor": "#202020",
+  "LaterColor": "#202020",
+  "TwoDaysColor": "#994C09",
+  "TomorrowColor": "#000592",
+  "TodayColor": "#006633"
+}

@@ -1,0 +1,71 @@
+﻿@using Domain.Models;
+@model List<Domain.Models.UserApplication>
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "UserApplications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Hayvan Adı</th>
+                                            <th>Başvuru Tarihi</th>
+                                            <th>Başvuru Durumu</th>
+                                            <th>Başvuru Tipi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null && Model.Count > 0)
+                                        {
+                                            @foreach (UserApplication userApplication in Model)
+                                            {
+                                                <tr>
+                                                    <td>@userApplication.Pet.Name</td>
+                                                    <td>@userApplication.InsertionDate</td>
+                                                    <td>
+                                                        @if (userApplication.ApplicationStatus == ApplicationStatuses.WaitingForApproval)
+                                                        {
+                                                            <p>Onay İçin Bekliyor</p>
+                                                        }
+                                                        else if (userApplication.ApplicationStatus == ApplicationStatuses.Approved)
+                                                        {
+                                                            <p>Onaylandı</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Onaylanmadı</p>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if(userApplication.ApplicationType == ApplicationTypes.Ownership)
+                                                        {
+                                                            <p>Sahiplendirme</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Sahiplenme</p>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

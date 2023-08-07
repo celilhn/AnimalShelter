@@ -1,0 +1,99 @@
+﻿@model List<Domain.Models.UserApplication>
+@using Domain.Models
+@using static Domain.Constants.Constants
+@{
+    ViewData["Title"] = "OwnerShipApplicationList";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Sahiplendirme Başvurusu Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Güncelleme Tarihi</th>
+                                <th>Durumu</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Hayvan Adı</th>
+                                <th>Hayvan Fotoğrafı</th>
+                                <th>Başvuru Durumu</th>
+                                <th>Onayla</th>
+                                <th>Reddet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UserApplication userApplication in Model)
+                            {
+                                <tr>
+                                    <td>@userApplication.ID</td>
+                                    <td>@userApplication.InsertionDate</td>
+                                    <td>@userApplication.UpdateDate</td>
+                                    <td>
+                                        @if (userApplication.Status == (int)StatusCodes.Pasif)
+                                        {
+                                            <p>Pasif</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Aktif</p>
+                                        }
+                                    </td>
+                                    <td>@userApplication.User.Name</td>
+                                    <td>@userApplication.Pet.Name</td>
+                                    <td>@userApplication.Pet.ImageUrl</td>
+                                    <td>
+                                        @if(userApplication.ApplicationStatus == ApplicationStatuses.WaitingForApproval)
+                                        {
+                                            <p>Onay İçin Bekliyor</p>
+                                        }
+                                        else if(userApplication.ApplicationStatus == ApplicationStatuses.Approved)
+                                        {
+                                            <p>Onaylandı</p>
+                                        }
+                                        else if (userApplication.ApplicationStatus == ApplicationStatuses.NotApproved)
+                                        {
+                                            <p>Reddedildi</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if(userApplication.ApplicationStatus == ApplicationStatuses.WaitingForApproval)
+                                        {
+                                            <a asp-controller="UserApplications" asp-action="ReplyApplication" asp-route-ID="@userApplication.ID" asp-route-applicationStatus="1" asp-route-applicationType="@userApplication.ApplicationType">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (userApplication.ApplicationStatus == ApplicationStatuses.WaitingForApproval)
+                                        {
+                                            <a asp-controller="UserApplications" asp-action="ReplyApplication" asp-route-ID="@userApplication.ID" asp-route-applicationStatus="2" asp-route-applicationType="@userApplication.ApplicationType">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
+

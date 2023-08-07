@@ -1,0 +1,91 @@
+﻿@using Domain.Models;
+@model List<Domain.Models.Pet>
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="hero-wrap js-fullheight" style="background-image: url('Web/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-11 ftco-animate text-center">
+                <h1 class="mb-4">Sevgi Dolu Yuvalar, Umuda Adım Atın. </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-5 d-flex">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(Web/assets/images/about-1.jpg);">
+                </div>
+            </div>
+            <div class="col-md-7 pl-md-5 py-md-5">
+                <div class="heading-section pt-md-5">
+                    <h2 class="mb-4">Neden Hayvan Sahiplenmeliyim?</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+                        <div class="text pl-3">
+                            <h4>Sağlık ve Mutluluk Kaynağı</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+                        <div class="text pl-3">
+                            <h4>Dostluk ve Sevgi Dolu Bağlar</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+                        <div class="text pl-3">
+                            <h4>Sorumluluk ve Disiplin Kazanma</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
+                        <div class="text pl-3">
+                            <h4>Hayvanları Kurtarma ve Umut Verme</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>Barınaktaki Hayvanlar </h2>
+            </div>
+        </div>
+        <div class="row">
+            @if(Model != null && Model.Count > 0)
+            {
+                @foreach (Pet pet in Model)
+                {
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end" style="background-image: url(Web/assets/images//@pet.ImageUrl);">
+                            <a href="Web/assets/images//@pet.ImageUrl" class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>@pet.PetType.Name</span>
+                                    <h2><a href="work-single.html">@pet.Name</a></h2>
+                                </div>
+                                <a asp-controller="Pet" asp-action="PetDetail" asp-route-ID="@pet.ID" class="btn btn-primary">Detaylar için tıklayın</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

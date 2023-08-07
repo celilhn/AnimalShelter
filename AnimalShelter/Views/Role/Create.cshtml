@@ -1,0 +1,46 @@
+﻿@model Domain.Models.Role
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <!-- end col -->
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Rol Oluşturma Sayfası</h4>
+                    <br />
+                    @if (ViewBag.IsModelStateValid == false)
+                    {
+                        <div class="alert alert-danger">
+                        </div>
+                    }
+                    <form asp-controller="Role" asp-action="Create">
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <div>
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Rol adı yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>

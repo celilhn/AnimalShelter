@@ -1,0 +1,81 @@
+﻿@model Domain.Models.Pet
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "AdoptAnimal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="ftco-section bg-light">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="contact-wrap w-100 p-md-5 p-4">
+                            <h3 class="mb-4">Hayvan Sahiplendirme Başvurusu</h3>
+                            @if (@ViewBag.Warning != null)
+                            {
+                                <div class="alert alert-warning">@ViewBag.Warning</div>
+                            }
+                            <form method="POST" asp-controller="Pet" asp-action="AdoptAnimal" enctype="multipart/form-data" class="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="label" for="Name">Hayvanın Adı</label>
+                                            <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Hayvanın Adı" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="label" for="Text">Başlık</label>
+                                            <input type="text" asp-for="Text" name="Text" class="form-control" required placeholder="Başlık" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="label" for="Description">Açıklama</label>
+                                            <textarea class="form-control" asp-for="Description" name="Description" cols="30" rows="4" placeholder="Hayvanın Özellikleri"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="label" for="Age">Yaş</label>
+                                            <input type="number" asp-for="Age" name="Age" class="form-control" required placeholder="Yaş" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="label" for="Color">Başlık</label>
+                                            <select asp-for="Color" class="form-control" name="Color" asp-items="Html.GetEnumSelectList<Colors>()">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="label" for="PetTypeID">Evcil Hayvan Türü</label>
+                                            <select asp-for="PetTypeID" class="form-control" name="PetTypeID" asp-items="ViewBag.PetTypes">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="label" for="Image">Resim Yükle</label>
+                                            <input type="file" class="form-control-file" name="Image" id="imageUpload">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="submit" value="Başvuru Yap" class="btn btn-primary">
+                                            <div class="submitting"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

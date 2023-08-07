@@ -1,0 +1,64 @@
+﻿@model Domain.Models.Role
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <!-- end col -->
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Rol Güncelleme Sayfası</h4>
+                    <br />
+                    @if (ViewBag.IsModelStateValid == false)
+                    {
+                        <div class="alert alert-danger">
+                        </div>
+                    }
+                    <form asp-controller="Role" asp-action="Update">
+                        <div class="form-group" hidden="hidden">
+                            <div>
+                                <input type="text" class="form-control" asp-for="ID" name="ID">
+                                <input type="text" class="form-control" asp-for="InsertionDate" name="InsertionDate">
+                                <input type="text" class="form-control" asp-for="UpdateDate" name="UpdateDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <div>
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Rol adı yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div>
+                                <select asp-for="Status" class="form-control" name="Status" asp-items="Html.GetEnumSelectList<StatusCodes>()">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
+

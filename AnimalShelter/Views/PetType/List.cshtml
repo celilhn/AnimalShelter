@@ -1,0 +1,63 @@
+﻿@using Domain.Models;
+@model List<Domain.Models.PetType>
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Hayvan Türü Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Güncelleme Tarihi</th>
+                                <th>Durumu</th>
+                                <th>Hayvan Türü</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PetType petType in Model)
+                            {
+                                <tr>
+                                    <td>@petType.ID</td>
+                                    <td>@petType.InsertionDate</td>
+                                    <td>@petType.UpdateDate</td>
+                                    <td>
+                                        @if(petType.Status == (int)StatusCodes.Pasif)
+                                        {
+                                            <p>Pasif</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Aktif</p>
+                                        }
+                                    </td>
+                                    <td>@petType.Name</td>
+                                    <th><a asp-controller="PetType" asp-action="Update" asp-route-Id="@petType.ID"><i class="fas fa-edit"></i></a></th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->

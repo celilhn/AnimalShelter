@@ -1,0 +1,86 @@
+﻿@using Domain.Models;
+@model List<Domain.Models.Pet>
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Hayvan Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Güncelleme Tarihi</th>
+                                <th>Durumu</th>
+                                <th>İsim</th>
+                                <th>Yaş</th>
+                                <th>Tür</th>
+                                <th>Renk</th>
+                                <th>Onay Durumu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(Model != null && Model.Count > 0)
+                            {
+                                @foreach (Pet pet in Model)
+                                {
+                                    <tr>
+                                        <td>@pet.ID</td>
+                                        <td>@pet.InsertionDate</td>
+                                        <td>@pet.UpdateDate</td>
+                                        <td>
+                                            @if (pet.Status == (int)StatusCodes.Pasif)
+                                            {
+                                                <p>Pasif</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Aktif</p>
+                                            }
+                                        </td>
+                                        <td>@pet.Name</td>
+                                        <td>@pet.Age</td>
+                                        <td>@pet.PetType.Name</td>
+                                        <td>@pet.Color</td>
+                                        <td>
+                                            @if (pet.Approved == 0)
+                                            {
+                                                <p>Yanıt Bekliyor</p>
+                                            }
+                                            else if (pet.Approved == 1)
+                                            {
+                                                <p>Yayında</p>
+                                            }
+                                            else 
+                                            {
+                                                <p>Sahiplenildi</p>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
+

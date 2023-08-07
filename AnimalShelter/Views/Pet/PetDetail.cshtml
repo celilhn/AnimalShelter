@@ -1,0 +1,48 @@
+﻿@model Domain.Models.Pet
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "PetDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('Web/assets/images//@Model.ImageUrl');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a asp-action="Index" asp-controller="Home" >Anasayfa <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"></span> </p>
+                <h1 class="mb-0 bread">Hayvan Bilgisi</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-degree-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ftco-animate">
+                <p>
+                    <img src="~/Web/assets/images/@Model.ImageUrl" alt="" class="img-fluid">
+                </p>
+                <h5 class="mb-3">@Model.Name - @Model.Age Yaşında - @Enum.GetName(typeof(Colors), Convert.ToInt32(Model.Color)) Renk</h5>
+                <h2 class="mb-3">@Model.Text</h2>
+                <p>@Model.Description</p>
+                @if (ViewBag.Message != null)
+                {
+                    if (ViewBag.Message == 1)
+                    {
+                        <strong>Daha önce başvuru yaptınız.</strong>
+                    }
+                    else if (ViewBag.Message == 2)
+                    {
+                        <strong>Bu ilanı siz yayınladınız.</strong>
+                    }
+                }
+                else
+                {
+                    <a asp-controller="Pet" asp-action="AcceptanceApplication" asp-route-petID="@Model.ID" class="btn btn-primary">Sahiplen</a>
+                }
+            </div> 
+        </div>
+    </div>
+</section> <!-- .section -->
